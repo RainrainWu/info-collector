@@ -1,6 +1,0 @@
-FROM golang:1.11.2-alpine
-WORKDIR /cmd
-ADD . /cmd
-RUN cd /cmd && go build
-EXPOSE 8080
-ENTRYPOINT ./cmd

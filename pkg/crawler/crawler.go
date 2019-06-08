@@ -1,6 +1,8 @@
 package crawler
 
 import (
+	"fmt"
+
 	"github.com/gocolly/colly"
 )
 
@@ -38,3 +40,20 @@ func Business_next() chan string {
 	return ch
 }
 
+func Meet_bnext() chan string {
+
+	c := colly.NewCollector()
+	ch := make(chan string)
+
+	c.OnHTML("a.item_img_link", func(e *colly.HTMLElement) {
+
+		go func() {
+
+			ch <- e.Attr("href")
+			fmt.Println(e.Attr("href"))
+		}()
+	})
+
+	c.Visit("https://meet.bnext.com.tw/")
+	return ch
+}

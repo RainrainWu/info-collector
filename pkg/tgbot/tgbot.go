@@ -12,6 +12,7 @@ type Tgbot struct {
 	Bot		*tgbotapi.BotAPI
 	TunaBatch	int
 	BnextBatch	int
+	MeetBatch	int
 }
 
 func (tgbot *Tgbot) AuthBot() {
@@ -49,6 +50,9 @@ func (tgbot *Tgbot) Reply() {
 		} else if update.Message.Text == "/bnext_update" {
 
 			tgbot.BypassReply(crawler.Business_next(), tgbot.BnextBatch, update)
+		} else if update.Message.Text == "/meet_update" {
+
+			tgbot.BypassReply(crawler.Meet_bnext(), tgbot.MeetBatch, update)
 		}
 	}
 }

@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	bot := tgbot.Tgbot{TunaBatch:2, BnextBatch:4}
+	bot := tgbot.Tgbot{TunaBatch:2, BnextBatch:4, MeetBatch:3}
 	bot.AuthBot()
 	bot.Reply()
 
