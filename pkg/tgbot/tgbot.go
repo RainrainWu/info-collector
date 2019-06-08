@@ -44,6 +44,19 @@ func (tgbot *Tgbot) Reply() {
 		if update.Message == nil {
 
 			continue
+		} else if update.Message.Text == "/help" {
+
+			content := `Hi I'm info-collector, a service to collect tech news and stories, you can use the following commands to chat with me.
+			
+			tuna_update	吐納商業評論
+			bnext_update	數位時代
+			meet_update	創業小聚
+			
+			Author: Rain
+			Repo:	https://github.com/RainrainWu/info-collector`
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, content)
+			msg.ReplyToMessageID = update.Message.MessageID
+			tgbot.Bot.Send(msg)
 		} else if update.Message.Text == "/tuna_update" {
 
 			tgbot.BypassReply(crawler.Tuna_press(), tgbot.TunaBatch, update)
