@@ -16,7 +16,7 @@ func main() {
 
 	updates := bot.Bot.ListenForWebhook("/" + bot.Bot.Token)
 	port := os.Getenv("PORT")
-	http.ListenAndServe(":"+port, nil)
+	go http.ListenAndServeTLS(":"+port, "cert.pem", "key.pem", nil)
 
 	for update := range updates {
 
